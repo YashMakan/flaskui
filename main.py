@@ -18,4 +18,4 @@ def homePage():
   Link("Login Page2", url="").style(color="blue").render(container, "login2")
   container.render(app, "login1")
 
-app.run(debug=True)
+app.run(debug=True, hotReload=False)

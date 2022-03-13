@@ -22,7 +22,7 @@ class FlaskUI:
         else:
             self._components[self._currentWorkingRoute] = [{"id": component.id, "component": component.html, "type": component.type}]
 
-    def __runAll(self):
+    def __runAll(self, hotReload=False, reloadSeconds = 1):
         self._currentWorkingRoute = ""
         for key, value in self._url_mapping.items():
             self._currentWorkingRoute = key
@@ -31,6 +31,8 @@ class FlaskUI:
             self._currentWorkingRoute = key
             widgets = self._components[self._currentWorkingRoute]
             tempHtml = ""
+            if(hotReload):
+                tempHtml = f'<meta http-equiv="refresh" content="{reloadSeconds}" />'
             for widget in widgets:
                 tempHtml += widget['component']
             self._app.add_url_rule(key, key, stringToFunction(tempHtml))
@@ -41,7 +43,7 @@ class FlaskUI:
             self._url_mapping[path] = func
         return route_wrapper
 
-    def run(self, debug=False):
-        self.__runAll()
+    def run(self, debug=False, hotReload=False, reloadSeconds = 1):
+        self.__runAll(hotReload, reloadSeconds)
         self._app.run(debug=debug)
         # self.app.run()
