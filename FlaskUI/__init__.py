@@ -1,3 +1,3 @@
 from FlaskUI.src.flaskui import FlaskUI
-from FlaskUI.components import Container, Text
+from FlaskUI.components.widgets import *
 from FlaskUI.DOM import DOM
