@@ -17,9 +17,12 @@ class Link:
       self._style_properties[key] = value
     return self
 
-  def render(self, container, id=None):
+  def render(self, container=None, id=None):
     if id is None:
       id = getRandomId()
     self.id = id
     self.html = self.__getHtml()
-    container._add(self)
+    if container is not None:
+      container._add(self)
+    else:
+      return self

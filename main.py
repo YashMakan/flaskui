@@ -1,5 +1,5 @@
 from FlaskUI import FlaskUI
-from FlaskUI.components import Container, Text, Link, Column
+from FlaskUI.components import Container, Text, Link, Column, Spacer
 from FlaskUI.DOM import DOM
 
 app = FlaskUI(__name__)
@@ -9,7 +9,8 @@ def homePage():
   container = Container()
   Column(children=[
     Text("Hello Page").style(color="red").render(),
-    Text("Hello Page2").style(color="blue").render()
+    Spacer().style(height="20px").render(),
+    Link("Hello Page2", url="").style(color="blue").render()
   ]).render(container)
   container.render(app)
 
