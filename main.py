@@ -1,5 +1,5 @@
 from FlaskUI import FlaskUI
-from FlaskUI.components import Container, Text, Link
+from FlaskUI.components import Container, Text, Link, Column
 from FlaskUI.DOM import DOM
 
 app = FlaskUI(__name__)
@@ -7,8 +7,10 @@ app = FlaskUI(__name__)
 @app.route("/")
 def homePage():
   container = Container()
-  Text("Hello Page").style(color="red").render(container)
-  Text("Hello Page2").style(color="red").render(container)
+  Column(children=[
+    Text("Hello Page").style(color="red").render(),
+    Text("Hello Page2").style(color="blue").render()
+  ]).render(container)
   container.render(app)
 
 @app.route("/login")
